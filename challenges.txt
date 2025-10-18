@@ -1,0 +1,5 @@
+CHALLENGES SO FAR
+* Inserting All values into the database tables 
+//fixed by using a python code to read from the excel files and write them in the database
+
+* Deriving Game results by analysing the player stats 
