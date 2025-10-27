@@ -1,9 +1,11 @@
+//We create functions to return a list of the desired query results
 import java.sql.*;
 import java.util.*;
 
 public class Queries {
 
     public static List<Object[]> getTopScorers() throws SQLException {
+        //we store the query in a string variable
         String query = """
             SELECT s.player_id, p.first_name, p.last_name, SUM(s.goals) AS total_goals
             FROM player_stats AS s
@@ -12,11 +14,14 @@ public class Queries {
             ORDER BY total_goals DESC;
         """;
 
+        //we create a list that will hold every row as an object
         List<Object[]> data = new ArrayList<>();
+
+        //We establish a connection from the database class and execute the query
         try (Connection con = Database.getConnection();
              Statement stmt = con.createStatement();
              ResultSet rs = stmt.executeQuery(query)) {
-
+        //Use of a while loop to record each row of the resultset into our list
             while (rs.next()) {
                 data.add(new Object[]{
                         rs.getString("player_id"),
@@ -28,6 +33,7 @@ public class Queries {
         return data;
     }
 
+    //We do the exact same thing as above i.e.(make connection,run the query, store the results in a list and return that list)
     public static List<Object[]> getTeamPerformance() throws SQLException {
         String query = """
             SELECT team, SUM(CASE WHEN goals_for > goals_against THEN 1 ELSE 0 END) AS wins,

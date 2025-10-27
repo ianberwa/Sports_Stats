@@ -1,3 +1,4 @@
+//This class is to establish a connection between our java code and our database
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
