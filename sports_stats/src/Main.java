@@ -20,4 +20,5 @@ public class Main {
         frame.add(tabs, BorderLayout.CENTER);
         frame.setVisible(true);
     }
+
 }

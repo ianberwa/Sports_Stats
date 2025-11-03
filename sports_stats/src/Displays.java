@@ -9,10 +9,7 @@ import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.renderer.LookupPaintScale;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
-import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.renderer.LookupPaintScale;
-import org.jfree.chart.renderer.xy.XYBlockRenderer;
 import org.jfree.chart.title.PaintScaleLegend;
 import org.jfree.data.xy.DefaultXYZDataset;
 import org.jfree.chart.ui.RectangleEdge;
@@ -46,6 +43,7 @@ public class Displays {
             dataset.addValue((Number) row[1], "Wins", (String) row[0]);
             dataset.addValue((Number) row[2], "Draws", (String) row[0]);
             dataset.addValue((Number) row[3], "Losses", (String) row[0]);
+            dataset.addValue((Number) row[4], "Goal_Difference",(String) row[0]);
         }
 
         JFreeChart chart = ChartFactory.createLineChart(

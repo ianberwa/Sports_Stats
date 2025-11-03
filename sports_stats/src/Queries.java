@@ -25,7 +25,7 @@ public class Queries {
             while (rs.next()) {
                 data.add(new Object[]{
                         rs.getString("player_id"),
-                        rs.getString("first_name") + " " + rs.getString("last_name"),
+                        rs.getString("first_name")+" "+rs.getString("last_name"),
                         rs.getInt("total_goals")
                 });
             }
