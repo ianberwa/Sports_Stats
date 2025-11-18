@@ -1,4 +1,6 @@
 //We create functions to return a list of the desired query results
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.sql.*;
 import java.util.*;
 
@@ -108,4 +110,109 @@ public class Queries {
         }
         return data;
     }
+    //Functions that will be used for table displays
+    public static void showPlayers(DefaultTableModel model) throws SQLException {
+        String sql = "Select * from players";
+        try (Connection con = Database.getConnection();
+             Statement stmt = con.createStatement();
+             ResultSet rs = stmt.executeQuery(sql);
+        ) {
+            while (rs.next()) {
+                model.addRow(new Object[]{
+                        rs.getString("player_id"),
+                        rs.getString("first_name"),
+                        rs.getString("last_name"),
+                        rs.getString("team"),
+                        rs.getString("position")
+                });
+            }
+        }
+
+    }
+    public static void showMatches(DefaultTableModel model) throws SQLException {
+        String sql = "Select * from matches";
+        try (Connection con = Database.getConnection();
+             Statement stmt = con.createStatement();
+             ResultSet rs = stmt.executeQuery(sql);
+        ) {
+            while (rs.next()) {
+                model.addRow(new Object[]{
+                        rs.getString("match_id"),
+                        rs.getString("date"),
+                        rs.getString("home_team"),
+                        rs.getString("away_team")
+                });
+            }
+        }
+
+    }
+    public static void showPlayerStats(DefaultTableModel model) throws SQLException {
+        String sql = "Select * from player_stats";
+        try (Connection con = Database.getConnection();
+             Statement stmt = con.createStatement();
+             ResultSet rs = stmt.executeQuery(sql);
+        ) {
+            while (rs.next()) {
+                model.addRow(new Object[]{
+                        rs.getString("stat_id"),
+                        rs.getString("match_id"),
+                        rs.getString("player_id"),
+                        rs.getString("goals"),
+                        rs.getString("assists"),
+                        rs.getString("fouls")
+                });
+            }
+        }
+
+    }
+    //Functions used for data insertion
+    public static void insertPlayer(String id,String fname,String lname,String team,String position) throws SQLException {
+        String sql="Insert into players values(?,?,?,?,?)";
+
+        try {Connection con = Database.getConnection();
+        PreparedStatement stmt = con.prepareStatement(sql);
+        stmt.setString(1,id);
+        stmt.setString(2,fname);
+        stmt.setString(3,lname);
+        stmt.setString(4,team);
+        stmt.setString(5,position);
+        stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        JOptionPane.showMessageDialog(null,"Player has been inserted successfully!");
+    }
+    public static void insertMatch(String id,String date,String home_team,String away_team) throws SQLException {
+        String sql="Insert into matches values(?,?,?,?)";
+
+        try {Connection con = Database.getConnection();
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1,id);
+            stmt.setString(2,date);
+            stmt.setString(3,home_team);
+            stmt.setString(4,away_team);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        JOptionPane.showMessageDialog(null,"Match has been inserted successfully!");
+    }
+    public static void insertStats(String s_id,String m_id,String p_id,int goals,int assists,int fouls) throws SQLException {
+        String sql="Insert into matches values(?,?,?,?,?,?,?)";
+
+        try {Connection con = Database.getConnection();
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1,s_id);
+            stmt.setString(2,m_id);
+            stmt.setString(3,p_id);
+            stmt.setInt(4,goals);
+            stmt.setInt(5,assists);
+            stmt.setInt(6,fouls);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        JOptionPane.showMessageDialog(null,"stats have been inserted successfully!");
+    }
+
 }

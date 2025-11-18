@@ -4,21 +4,44 @@ import java.sql.SQLException;
 
 public class Main {
     public static void main(String[] args) throws SQLException {
-        //We create a frame for our GUI and initialize it's title
-        JFrame frame = new JFrame("Sports Stats Dashboard");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1000, 700);
+        JFrame mainFrame=new JFrame("Main Page");
+        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        mainFrame.setSize(500,300);
+        mainFrame.setResizable(false);
+        mainFrame.setLocationRelativeTo(null);
+        mainFrame.setLayout(null);
 
-        //Since we want multiple tabs for each our data analytics graph we create a tabbed pane
-        JTabbedPane tabs = new JTabbedPane();
+        JButton graph=new JButton("Graph");
+        JButton tables=new JButton("Tables");
+        JButton update=new JButton("Update");
+        JLabel text=new JLabel("WELCOME TO THE SPORTS ANALYSIS SYSTEM");
 
-        //We add tabs and in each tab we add a title and call functions to display charts
-        tabs.addTab("Top Scorers", Displays.createBarChart(Queries.getTopScorers()));
-        tabs.addTab("Team Performance", Displays.createLineChart(Queries.getTeamPerformance()));
-        tabs.addTab("Player Ratings", Displays.createHeatMap(Queries.getPlayerAverages()));
+        text.setBounds(40,10,450,50);
+        graph.setBounds(100,70,100,50);
+        tables.setBounds(300,70,100,50);
+        update.setBounds(200,170,100,50);
 
-        frame.add(tabs, BorderLayout.CENTER);
-        frame.setVisible(true);
+        text.setFont(new Font("Algerian",Font.BOLD,18));
+
+        mainFrame.add(text);
+        mainFrame.add(graph);
+        mainFrame.add(tables);
+        mainFrame.add(update);
+
+        graph.addActionListener(e -> {
+            Analytics.showAnalysis();
+        });
+        tables.addActionListener(e -> {
+            try {
+                Tables.showTables();
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+        update.addActionListener(e -> {
+            Insertion.insertData();
+        });
+        mainFrame.setVisible(true);
     }
 
 }
