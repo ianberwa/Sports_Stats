@@ -7,7 +7,6 @@ public class Analytics {
     {
         //We create a frame for our GUI and initialize it's title
         JFrame frame = new JFrame("Sports Stats Dashboard");
-        //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1000, 700);
 
         //Since we want multiple tabs for each our data analytics graph we create a tabbed pane
