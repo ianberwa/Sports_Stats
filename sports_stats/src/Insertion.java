@@ -67,6 +67,7 @@ public class Insertion {
             } catch (SQLException ex) {
                 throw new RuntimeException(ex);
             }
+
         });
         matchesPanel.add(m_insert);
 

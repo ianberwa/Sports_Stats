@@ -8,6 +8,7 @@ public class Database {
     private static final String USER = "root";
     private static final String PASSWORD = "";
 
+    //The throws sql exception will force every implementation to be surrounded by a try catch
     public static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(URL, USER, PASSWORD);
     }

@@ -1,5 +1,5 @@
 //In this class we create functions that receive as parameters array lists from the previous class
-//Then they draw charts and graph using the data
+//Then they draw charts and graph using the datalists
 import org.jfree.chart.*;
 import org.jfree.chart.plot.*;
 import org.jfree.data.category.*;

@@ -170,37 +170,54 @@ public class Queries {
         String sql="Insert into players values(?,?,?,?,?)";
 
         try {Connection con = Database.getConnection();
-        PreparedStatement stmt = con.prepareStatement(sql);
-        stmt.setString(1,id);
-        stmt.setString(2,fname);
-        stmt.setString(3,lname);
-        stmt.setString(4,team);
-        stmt.setString(5,position);
-        stmt.executeUpdate();
+            if(id.isBlank()|| fname.isBlank() || lname.isBlank() || team.isBlank() || position.isBlank() ){
+                throw new IllegalArgumentException("Player ID is empty");
+            }
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1,id);
+            stmt.setString(2,fname);
+            stmt.setString(3,lname);
+            stmt.setString(4,team);
+            stmt.setString(5,position);
+            stmt.executeUpdate();
+            JOptionPane.showMessageDialog(null,"Player has been inserted successfully!");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        JOptionPane.showMessageDialog(null,"Player has been inserted successfully!");
+        catch(IllegalArgumentException ex){
+            JOptionPane.showMessageDialog(null,"No fields should be left blank");
+
+        }
     }
     public static void insertMatch(String id,String date,String home_team,String away_team) throws SQLException {
         String sql="Insert into matches values(?,?,?,?)";
 
         try {Connection con = Database.getConnection();
+            if(id.isBlank()|| date.isBlank() || home_team.isBlank() || away_team.isBlank()){
+                throw new IllegalArgumentException("empty fields");
+            }
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1,id);
             stmt.setString(2,date);
             stmt.setString(3,home_team);
             stmt.setString(4,away_team);
             stmt.executeUpdate();
+            JOptionPane.showMessageDialog(null,"Match has been inserted successfully!");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        JOptionPane.showMessageDialog(null,"Match has been inserted successfully!");
+        catch(IllegalArgumentException ex){
+            JOptionPane.showMessageDialog(null,"No fields should be left blank");
+
+        }
     }
     public static void insertStats(String s_id,String m_id,String p_id,int goals,int assists,int fouls) throws SQLException {
         String sql="Insert into matches values(?,?,?,?,?,?)";
 
         try {Connection con = Database.getConnection();
+            if(s_id.isBlank() || m_id.isBlank() || p_id.isBlank()){
+                throw new IllegalArgumentException("empty fields");
+            }
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1,s_id);
             stmt.setString(2,m_id);
@@ -209,10 +226,15 @@ public class Queries {
             stmt.setInt(5,assists);
             stmt.setInt(6,fouls);
             stmt.executeUpdate();
-        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null,"stats have been inserted successfully!");
+        }
+        catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        JOptionPane.showMessageDialog(null,"stats have been inserted successfully!");
+        catch(IllegalArgumentException ex){
+            JOptionPane.showMessageDialog(null,"No fields should be left blank");
+
+        }
     }
 
 }
