@@ -1,7 +1,10 @@
-CHALLENGES SO FAR
+CHALLENGES FACED
 * Inserting All values into the database tables 
 //fixed by using a python code to read from the excel files and write them in the database
 
-* Deriving Game results by analysing the player stats
+* Deriving Game results by analysing the  tables
 
 * Understanding how to draw a heatmap
+
+* Told last minute that we should also be able to insert and view data from the tables
+
