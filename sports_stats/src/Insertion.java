@@ -70,7 +70,7 @@ public class Insertion {
         });
         matchesPanel.add(m_insert);
 
-        // --- Panel for Player Stats ---
+        //  Panel for Player Stats 
         JPanel statsPanel = new JPanel();
         statsPanel.setLayout(new GridLayout(7, 2, 10, 40));
 
