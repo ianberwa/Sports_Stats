@@ -14,7 +14,7 @@ public class Main {
         JButton graph=new JButton("Graph");
         JButton tables=new JButton("Tables");
         JButton update=new JButton("Update");
-        JLabel text=new JLabel("WELCOME TO THE SPORTS ANALYSIS SYSTEM");
+        JLabel text=new JLabel("WELCOME TO THE SPORTS ANALYSIS SYSTEM ");
 
         text.setBounds(40,10,450,50);
         graph.setBounds(100,70,100,50);
