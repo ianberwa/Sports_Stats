@@ -198,7 +198,7 @@ public class Queries {
         JOptionPane.showMessageDialog(null,"Match has been inserted successfully!");
     }
     public static void insertStats(String s_id,String m_id,String p_id,int goals,int assists,int fouls) throws SQLException {
-        String sql="Insert into matches values(?,?,?,?,?,?,?)";
+        String sql="Insert into matches values(?,?,?,?,?,?)";
 
         try {Connection con = Database.getConnection();
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -210,7 +210,7 @@ public class Queries {
             stmt.setInt(6,fouls);
             stmt.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getMessage());
         }
         JOptionPane.showMessageDialog(null,"stats have been inserted successfully!");
     }

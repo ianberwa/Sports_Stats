@@ -103,7 +103,7 @@ public class Insertion {
             try {
                 Queries.insertStats(statID.getText(),mID.getText(),pID.getText(),Integer.parseInt(goals.getText()),Integer.parseInt(assists.getText()),Integer.parseInt(fouls.getText()));
             } catch (SQLException ex) {
-                throw new RuntimeException(ex);
+                System.out.println(ex.getMessage());
             }
         });
         statsPanel.add(s_insert);
